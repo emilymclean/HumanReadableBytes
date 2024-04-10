@@ -1,6 +1,8 @@
 plugins {
+    id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.9.23'
     id 'net.thebugmc.gradle.sonatype-central-portal-publisher' version '1.2.3'
+    id 'nebula.lint' version '17.8.0'
 }
 
 group = 'cl.emilym'
