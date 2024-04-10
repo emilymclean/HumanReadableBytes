@@ -1,0 +1,48 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.23'
+    id 'net.thebugmc.gradle.sonatype-central-portal-publisher' version '1.2.3'
+}
+
+group = 'cl.emilym'
+description = "Convert a byte count into a human readable format"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(17)
+}
+
+centralPortal {
+    username = findProperty("sonatypeUsername")
+    password = findProperty("sonatypePassword")
+    name = "bytes"
+    pom {
+        url = findProperty("pom.url")
+        licenses {
+            license {
+                name = findProperty("pom.license.name")
+                url = findProperty("pom.license.url")
+            }
+        }
+        developers {
+            developer {
+                name = findProperty("pom.developer.name")
+                email = findProperty("pom.developer.email")
+            }
+        }
+        scm {
+            connection = findProperty("pom.scm.connection")
+            developerConnection = findProperty("pom.scm.developerConnection")
+            url = findProperty("pom.scm.url")
+        }
+    }
+}
