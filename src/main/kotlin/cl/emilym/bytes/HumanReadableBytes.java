@@ -1,4 +1,4 @@
-package mc.emilym.bytes;
+package cl.emilym.bytes;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
