@@ -9,6 +9,8 @@ import java.text.StringCharacterIterator;
  */
 public class HumanReadableBytes {
 
+    private HumanReadableBytes() {}
+
     /**
      * Base 10 conversion of bytes into a human-readable SI format (MB as opposed to MiB),
      * with 1 decimal place of precision.
