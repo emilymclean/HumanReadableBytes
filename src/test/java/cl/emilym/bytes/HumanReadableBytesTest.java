@@ -10,7 +10,7 @@ class HumanReadableBytesTest {
 
     @Test
     public void testSi() {
-        Assertions.assertEquals("0B", HumanReadableBytes.si(0));
+        assertEquals("0B", HumanReadableBytes.si(0));
         assertEquals("1B", HumanReadableBytes.si(1));
         assertEquals("999B", HumanReadableBytes.si(999));
         assertEquals("1.0kB", HumanReadableBytes.si(1000));
@@ -28,7 +28,7 @@ class HumanReadableBytesTest {
 
     @Test
     public void testSiRound() {
-        Assertions.assertEquals("0B", HumanReadableBytes.si(0, 0));
+        assertEquals("0B", HumanReadableBytes.si(0, 0));
         assertEquals("1B", HumanReadableBytes.si(1, 0));
         assertEquals("999B", HumanReadableBytes.si(999, 0));
         assertEquals("1kB", HumanReadableBytes.si(1000, 0));
@@ -42,6 +42,24 @@ class HumanReadableBytesTest {
         assertEquals("1GB", HumanReadableBytes.si(1_000_000_000, 0));
         assertEquals("2GB", HumanReadableBytes.si(1_500_000_000, 0));
         assertEquals("3GB", HumanReadableBytes.si(2_500_000_000L, 0));
+    }
+
+    @Test
+    public void testSiSpace() {
+        assertEquals("0 B", HumanReadableBytes.si(0, 0, true));
+        assertEquals("1 B", HumanReadableBytes.si(1, 0, true));
+        assertEquals("999 B", HumanReadableBytes.si(999, 0, true));
+        assertEquals("1 kB", HumanReadableBytes.si(1000, 0, true));
+        assertEquals("2 kB", HumanReadableBytes.si(1500, 0, true));
+        assertEquals("3 kB", HumanReadableBytes.si(2500, 0, true));
+        assertEquals("999 kB", HumanReadableBytes.si(999_000, 0, true));
+        assertEquals("1 MB", HumanReadableBytes.si(1_000_000, 0, true));
+        assertEquals("2 MB", HumanReadableBytes.si(1_500_000, 0, true));
+        assertEquals("3 MB", HumanReadableBytes.si(2_500_000, 0, true));
+        assertEquals("999 MB", HumanReadableBytes.si(999_000_000, 0, true));
+        assertEquals("1 GB", HumanReadableBytes.si(1_000_000_000, 0, true));
+        assertEquals("2 GB", HumanReadableBytes.si(1_500_000_000, 0, true));
+        assertEquals("3 GB", HumanReadableBytes.si(2_500_000_000L, 0, true));
     }
 
     @Test
@@ -78,6 +96,24 @@ class HumanReadableBytesTest {
         assertEquals("1GiB", HumanReadableBytes.bi(1_073_741_824, 0));
         assertEquals("2GiB", HumanReadableBytes.bi(1_610_612_736, 0));
         assertEquals("3GiB", HumanReadableBytes.bi(2_684_354_560L, 0));
+    }
+
+    @Test
+    public void testBiSpace() {
+        assertEquals("0 B", HumanReadableBytes.bi(0, 0, true));
+        assertEquals("1 B", HumanReadableBytes.bi(1, 0, true));
+        assertEquals("999 B", HumanReadableBytes.bi(999, 0, true));
+        assertEquals("1 KiB", HumanReadableBytes.bi(1024, 0, true));
+        assertEquals("2 KiB", HumanReadableBytes.bi(1536, 0, true));
+        assertEquals("3 KiB", HumanReadableBytes.bi(2560, 0, true));
+        assertEquals("999 KiB", HumanReadableBytes.bi(1_022_976, 0, true));
+        assertEquals("1 MiB", HumanReadableBytes.bi(1_048_576, 0, true));
+        assertEquals("2 MiB", HumanReadableBytes.bi(1_572_864, 0, true));
+        assertEquals("3 MiB", HumanReadableBytes.bi(2_621_440, 0, true));
+        assertEquals("999 MiB", HumanReadableBytes.bi(1_047_527_424, 0, true));
+        assertEquals("1 GiB", HumanReadableBytes.bi(1_073_741_824, 0, true));
+        assertEquals("2 GiB", HumanReadableBytes.bi(1_610_612_736, 0, true));
+        assertEquals("3 GiB", HumanReadableBytes.bi(2_684_354_560L, 0, true));
     }
 
 }
