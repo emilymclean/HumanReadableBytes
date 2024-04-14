@@ -11,3 +11,14 @@ A library providing the famous ["human readable bytes" StackOverflow answer](htt
 ```
 implementation "cl.emilym:bytes:<latest>"
 ```
+
+## Usage
+```java
+
+long fileSize = 10_000;
+// Prints "The size of the file is 10.0kB"
+System.out.println("The size of the file is " + HumanReadableBytes.si(fileSize));
+// Prints "The size of the file is 9.8KiB"
+System.out.println("The size of the file is " + HumanReadableBytes.bi(fileSize));
+
+```
