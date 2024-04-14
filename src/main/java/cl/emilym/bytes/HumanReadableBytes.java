@@ -63,9 +63,8 @@ public class HumanReadableBytes {
             ci.next();
         }
 
-        return "%%.%df%s%%cB"
-                .formatted(decimalPlaces, separator)
-                .formatted(bytes / 1000.0, ci.current());
+        String formatString = "%." + decimalPlaces + "f%s%cB";
+        return formatString.formatted(bytes / 1000.0, separator, ci.current());
     }
 
     /**
@@ -120,9 +119,8 @@ public class HumanReadableBytes {
             ci.next();
         }
 
-        return "%%.%df%s%%ciB"
-                .formatted(decimalPlaces, separator)
-                .formatted(bytes / 1024.0, ci.current());
+        String formatString = "%." + decimalPlaces + "f%s%ciB";
+        return formatString.formatted(bytes / 1024.0, separator, ci.current());
     }
 
 }
