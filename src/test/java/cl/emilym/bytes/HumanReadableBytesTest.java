@@ -13,15 +13,16 @@ class HumanReadableBytesTest {
         assertEquals("0B", HumanReadableBytes.si(0));
         assertEquals("1B", HumanReadableBytes.si(1));
         assertEquals("999B", HumanReadableBytes.si(999));
-        assertEquals("1.0kB", HumanReadableBytes.si(1000));
+        assertEquals("1kB", HumanReadableBytes.si(1000));
         assertEquals("1.5kB", HumanReadableBytes.si(1500));
         assertEquals("2.5kB", HumanReadableBytes.si(2500));
-        assertEquals("999.0kB", HumanReadableBytes.si(999_000));
-        assertEquals("1.0MB", HumanReadableBytes.si(1_000_000));
+        assertEquals("999kB", HumanReadableBytes.si(999_000));
+        assertEquals("1MB", HumanReadableBytes.si(1_000_000));
         assertEquals("1.5MB", HumanReadableBytes.si(1_500_000));
         assertEquals("2.5MB", HumanReadableBytes.si(2_500_000));
-        assertEquals("999.0MB", HumanReadableBytes.si(999_000_000));
-        assertEquals("1.0GB", HumanReadableBytes.si(1_000_000_000));
+        assertEquals("2.5MB", HumanReadableBytes.si(2_520_000));
+        assertEquals("999MB", HumanReadableBytes.si(999_000_000));
+        assertEquals("1GB", HumanReadableBytes.si(1_000_000_000));
         assertEquals("1.5GB", HumanReadableBytes.si(1_500_000_000));
         assertEquals("2.5GB", HumanReadableBytes.si(2_500_000_000L));
     }
@@ -67,15 +68,16 @@ class HumanReadableBytesTest {
         assertEquals("0B", HumanReadableBytes.bi(0));
         assertEquals("1B", HumanReadableBytes.bi(1));
         assertEquals("999B", HumanReadableBytes.bi(999));
-        assertEquals("1.0KiB", HumanReadableBytes.bi(1024));
+        assertEquals("1KiB", HumanReadableBytes.bi(1024));
         assertEquals("1.5KiB", HumanReadableBytes.bi(1536));
         assertEquals("2.5KiB", HumanReadableBytes.bi(2560));
-        assertEquals("999.0KiB", HumanReadableBytes.bi(1_022_976));
-        assertEquals("1.0MiB", HumanReadableBytes.bi(1_048_576));
+        assertEquals("999KiB", HumanReadableBytes.bi(1_022_976));
+        assertEquals("1MiB", HumanReadableBytes.bi(1_048_576));
         assertEquals("1.5MiB", HumanReadableBytes.bi(1_572_864));
         assertEquals("2.5MiB", HumanReadableBytes.bi(2_621_440));
-        assertEquals("999.0MiB", HumanReadableBytes.bi(1_047_527_424));
-        assertEquals("1.0GiB", HumanReadableBytes.bi(1_073_741_824));
+        assertEquals("2.5MiB", HumanReadableBytes.bi(2_631_440));
+        assertEquals("999MiB", HumanReadableBytes.bi(1_047_527_424));
+        assertEquals("1GiB", HumanReadableBytes.bi(1_073_741_824));
         assertEquals("1.5GiB", HumanReadableBytes.bi(1_610_612_736));
         assertEquals("2.5GiB", HumanReadableBytes.bi(2_684_354_560L));
     }

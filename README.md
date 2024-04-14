@@ -16,7 +16,7 @@ implementation "cl.emilym:bytes:<latest>"
 ```java
 
 long fileSize = 10_000;
-// Prints "The size of the file is 10.0kB"
+// Prints "The size of the file is 10kB"
 System.out.println("The size of the file is " + HumanReadableBytes.si(fileSize));
 // Prints "The size of the file is 9.8KiB"
 System.out.println("The size of the file is " + HumanReadableBytes.bi(fileSize));

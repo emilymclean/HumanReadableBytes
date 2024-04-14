@@ -1,6 +1,8 @@
 package cl.emilym.bytes;
 
+import java.math.RoundingMode;
 import java.text.CharacterIterator;
+import java.text.DecimalFormat;
 import java.text.StringCharacterIterator;
 
 /**
@@ -63,8 +65,8 @@ public class HumanReadableBytes {
             ci.next();
         }
 
-        String formatString = "%." + decimalPlaces + "f%s%cB";
-        return formatString.formatted(bytes / 1000.0, separator, ci.current());
+        String formatString = "%s%s%cB";
+        return formatString.formatted(rounded(bytes / 1000.0, decimalPlaces), separator, ci.current());
     }
 
     /**
@@ -119,8 +121,19 @@ public class HumanReadableBytes {
             ci.next();
         }
 
-        String formatString = "%." + decimalPlaces + "f%s%ciB";
-        return formatString.formatted(bytes / 1024.0, separator, ci.current());
+        String formatString = "%s%s%ciB";
+        return formatString.formatted(rounded(bytes / 1024.0, decimalPlaces), separator, ci.current());
+    }
+
+    private static String rounded(
+            double bytes,
+            int decimalPlaces
+    ) {
+        if (decimalPlaces == 0) return "%.0f".formatted(bytes);
+
+        DecimalFormat df = new DecimalFormat("0." + "#".repeat(decimalPlaces));
+        df.setRoundingMode(RoundingMode.HALF_UP);
+        return df.format(bytes);
     }
 
 }
