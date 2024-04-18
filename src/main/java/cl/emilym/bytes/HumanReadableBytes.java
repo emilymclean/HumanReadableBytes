@@ -1,6 +1,8 @@
 package cl.emilym.bytes;
 
+import java.math.RoundingMode;
 import java.text.CharacterIterator;
+import java.text.DecimalFormat;
 import java.text.StringCharacterIterator;
 
 /**
@@ -8,6 +10,8 @@ import java.text.StringCharacterIterator;
  * Provides methods for both base 10 (SI) and base 2 (IEC) conversions.
  */
 public class HumanReadableBytes {
+
+    private HumanReadableBytes() {}
 
     /**
      * Base 10 conversion of bytes into a human-readable SI format (MB as opposed to MiB),
@@ -53,7 +57,7 @@ public class HumanReadableBytes {
     ) {
         String separator = space ? " " : "";
         if (-1000 < bytes && bytes < 1000) {
-            return "%d%sB".formatted(bytes, separator);
+            return String.format("%d%sB", bytes, separator);
         }
         CharacterIterator ci = new StringCharacterIterator("kMGTPE");
         while (bytes <= -999_950 || bytes >= 999_950) {
@@ -61,9 +65,8 @@ public class HumanReadableBytes {
             ci.next();
         }
 
-        return "%%.%df%s%%cB"
-                .formatted(decimalPlaces, separator)
-                .formatted(bytes / 1000.0, ci.current());
+        String formatString = "%s%s%cB";
+        return String.format(formatString, rounded(bytes / 1000.0, decimalPlaces), separator, ci.current());
     }
 
     /**
@@ -110,7 +113,7 @@ public class HumanReadableBytes {
     ) {
         String separator = space ? " " : "";
         if (-1024 < bytes && bytes < 1024) {
-            return "%d%sB".formatted(bytes, separator);
+            return String.format("%d%sB", bytes, separator);
         }
         CharacterIterator ci = new StringCharacterIterator("KMGTPE");
         while (bytes <= -1_048_576 || bytes >= 1_048_576 /* 1024 * 1024 */) {
@@ -118,9 +121,19 @@ public class HumanReadableBytes {
             ci.next();
         }
 
-        return "%%.%df%s%%ciB"
-                .formatted(decimalPlaces, separator)
-                .formatted(bytes / 1024.0, ci.current());
+        String formatString = "%s%s%ciB";
+        return String.format(formatString, rounded(bytes / 1024.0, decimalPlaces), separator, ci.current());
+    }
+
+    private static String rounded(
+            double bytes,
+            int decimalPlaces
+    ) {
+        if (decimalPlaces == 0) return String.format("%.0f", bytes);
+
+        DecimalFormat df = new DecimalFormat("0." + new String(new char[decimalPlaces]).replace("\0", "#"));
+        df.setRoundingMode(RoundingMode.HALF_UP);
+        return df.format(bytes);
     }
 
 }
